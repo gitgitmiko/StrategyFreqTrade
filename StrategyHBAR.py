@@ -1,8 +1,13 @@
 # --- Do not remove these libs ---
 from freqtrade.strategy import IStrategy
+from typing import Dict, List
+from functools import reduce
 from pandas import DataFrame
+# --------------------------------
+
 import talib.abstract as ta
 import freqtrade.vendor.qtpylib.indicators as qtpylib
+import numpy # noqa
 
 class StrategyHBAR(IStrategy):
     """
@@ -11,7 +16,7 @@ class StrategyHBAR(IStrategy):
     - Aims for 2% profit per trade
     """
 
-    INTERFACE_VERSION = 3
+    INTERFACE_VERSION: int = 3
 
     # Minimal ROI (target profit 2%)
     minimal_roi = {
